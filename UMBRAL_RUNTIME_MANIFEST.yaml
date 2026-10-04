@@ -1,0 +1,101 @@
+schema_version: umbral-runtime-manifest-v0
+product_id: MVP-001-BOOKING
+product_name: "Umbral Booking — Osvaldo"
+status: MIGRATION_STAGING_NOT_CUT_OVER
+owner: Osvaldo
+
+identity:
+  canonical: "MVP-001 = BOOKING"
+  does_not_mean:
+    - "Booking is Torre"
+    - "Booking owns Tiempos"
+    - "repo creation equals runtime cutover"
+
+source:
+  repository: "Osmauelias/umbral-booking-osvaldo"
+  authoritative_ref: "main"
+  current_role: "Target physical source home; not yet official live runtime authority"
+  migration_source_repository: "Osmauelias/umbral-torre-control"
+  migration_source_ref: "umbral/torre-functional-circuit-1"
+  migration_source_observed_commit: "dd897f2f4ddc0b2d6c9cc11b1ae5f164def755ba"
+  authority_rule: "Before any production-affecting migration, re-verify the exact currently deployed legacy source/runtime. Do not infer authority from branch name, latest commit, Pages preview, or this repo's existence."
+
+runtime:
+  authority: "LEGACY_EXTERNAL_UNTIL_CONTROLLED_CUTOVER"
+  current_legacy_manifest: "Osmauelias/umbral-torre-control@umbral/torre-functional-circuit-1:UMBRAL_RUNTIME_MANIFEST.yaml"
+  target_provider: TO_DECIDE_FROM_EXISTING_RUNTIME_EVIDENCE
+  target_service_type: TO_VERIFY
+  target_service_name: TO_VERIFY
+  target_urls: []
+  deploy_mechanism: TO_VERIFY_BEFORE_CUTOVER
+  note: "The legacy integrated Torre/Booking runtime is evidence to migrate from, not proof that Booking should remain owned by Torre."
+
+build:
+  command: TO_ESTABLISH_AFTER_CODE_EXTRACTION
+  artifacts: []
+
+data:
+  temporal_authority: "Osmauelias/umbral-tiempos through explicit authorized contract"
+  booking_product_state_authority: TO_ESTABLISH_DURING_MIGRATION
+  legacy_store_pointer: "See legacy Torre runtime manifest; do not copy identifiers/config blindly"
+  trace_ids_expected:
+    - request_id
+    - event_id
+    - appointment_event_id
+  cross_context_policy: "Operational/user data is not automatically authorized for cross-context learning or reuse"
+
+secrets:
+  values_in_manifest: false
+  current_custody: "LEGACY_RUNTIME_CUSTODY_UNTIL_VERIFIED_MIGRATION"
+  candidate_required_names_from_legacy:
+    - ADMIN_PASSWORD
+    - SESSION_SECRET
+  rule: "Candidate inherited secret names must be reclassified as BOOKING_OWNED, TORRE_OWNED, SHARED_INTEGRATION or NOT_REQUIRED before cutover. Never copy values into Git."
+
+integrations:
+  tiempos:
+    repository: "Osmauelias/umbral-tiempos"
+    role: "HORIZONTAL TEMPORAL ENGINE"
+    ownership_rule: "BOOKING USES TIEMPOS != BOOKING OWNS TIEMPOS"
+  torre:
+    repository: "Osmauelias/umbral-torre-control"
+    role: "OPTIONAL CONSUMER / OSVALDO CONTROL SURFACE"
+    ownership_rule: "TORRE USES BOOKING != TORRE OWNS BOOKING"
+  documentador:
+    repository: "Osmauelias/umbral-documentador"
+    role: "OFFICIALIA + INSTITUTIONAL DOCUMENTATION"
+    intake: "INBOX/ENTRADAS/"
+
+validation:
+  technical_pass: "PENDING PHYSICAL MIGRATION"
+  human_pass: "PENDING AFTER BOOKING RUNS FROM THIS REPO"
+  required_journey:
+    - public_availability
+    - booking_request
+    - pending_human_review
+    - accept
+    - modify_or_reschedule
+    - reject
+    - cancel
+    - slot_hold_release_occupation
+    - canonical_appointment_event_projection
+    - timezone_behavior
+    - idempotency_where_applicable
+
+rollback:
+  mechanism: "Keep legacy Torre co-located implementation recoverable until controlled cutover + Human Pass"
+  destructive_delete_before_pass: false
+
+documentation:
+  start_here: "START_HERE.md"
+  agent_contract: "AGENTS.md"
+  migration_source: "MIGRATION/SOURCE_BASELINE_V0.md"
+  ownership_map: "MIGRATION/OWNERSHIP_INVENTORY_V0.md"
+  integration_boundaries: "docs/INTEGRATION_BOUNDARIES_V0.md"
+  behavior_contract: "docs/BOOKING_BEHAVIOR_CONTRACT_V0.md"
+  human_pass: "docs/HUMAN_PASS_V0.md"
+
+last_verified:
+  at: "2026-10-04"
+  by: "ChatGPT / Torre support using GitHub source evidence"
+  evidence: "Repo created by Osvaldo; legacy integrated source branch and current separation spec inspected; runtime cutover intentionally not claimed."
